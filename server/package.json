@@ -1,0 +1,28 @@
+{
+  "name": "mock-json-response",
+  "version": "1.0.0",
+  "description": "nothing serious",
+  "type": "module",
+  "main": "server.js",
+	"scripts": {
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohammedismayil/Mock-json-response.git"
+  },
+  "author": "ismayil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohammedismayil/Mock-json-response/issues"
+  },
+  "homepage": "https://github.com/mohammedismayil/Mock-json-response#readme",
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
