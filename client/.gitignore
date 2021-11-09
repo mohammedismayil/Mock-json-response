@@ -9,7 +9,10 @@
 /coverage
 
 # production
-/build
+
+#in production we should not do this( probably should not) but here we are doing this
+# we need to build the whole project in single server(instance) - heroku
+# /build
 
 # misc
 .DS_Store
