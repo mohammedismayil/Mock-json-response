@@ -6,7 +6,8 @@ class Books extends Component {
 	state = {
 		books: [],
 		title: '',
-		author: ''
+		author: '',
+		createdID:'',
 	};
 
 	componentDidMount() {
@@ -32,6 +33,16 @@ class Books extends Component {
 		});
 	};
 
+
+	reloadInputs = (data) => {
+		this.setState({
+		   title: '',
+		   author: '',
+		   createdID:data._id,
+		})
+
+
+	}
 	handleFormSubmit = event => {
 		event.preventDefault();
 		if (this.state.title && this.state.author) {
@@ -39,15 +50,15 @@ class Books extends Component {
 				title: this.state.title,
 				author: this.state.author
 			})
-				.then(res => this.loadBooks())
+				.then(res => this.reloadInputs(res.data))
 				.catch(err => console.log(err));
 		}
 	};
 
 	render() {
 		return (
-		
-							<><h1>What Books Should I Read?</h1><form>
+		<div>
+	<h1>What Books Should I Read?</h1>
                 <input
                     value={this.state.title}
                     onChange={this.handleInputChange}
@@ -65,7 +76,12 @@ class Books extends Component {
                 >
                     Submit Book
                 </button>
-            </form><h1>Books On My List</h1></>
+
+{/* <a href={http://localhost:3000/{this.state.createdID}>http://localhost:3000/{this.state.createdID}</a> */}
+				
+		</div>
+						
+
 
 					
 		);
