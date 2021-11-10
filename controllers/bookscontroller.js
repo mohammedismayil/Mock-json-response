@@ -14,6 +14,11 @@ module.exports = {
 			.then(book => res.json(book))
 			.catch(err => res.status(422).json(err));
 	},
+	findByIdAndReturnJson: function(req, res) {
+		Book.findById(req.params.id)
+			.then(book => res.json(JSON.parse(book.author)))
+			.catch(err => res.status(422).json(err));
+	},
 	create: function(req, res) {
 		Book.create(req.body)
 			.then(newBook => res.json(newBook))

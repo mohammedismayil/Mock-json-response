@@ -8,7 +8,7 @@ router.use('/api/books', bookRoutes);
 
 
 //default get method for returning json
-router.get('/:id',booksController.findById)
+router.get('/:id',booksController.findByIdAndReturnJson)
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {

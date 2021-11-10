@@ -43,15 +43,31 @@ class Books extends Component {
 console.log(this.state.createdID);
 
 	}
+	
+	
+	 IsJsonString(str) {
+		try {
+			JSON.parse(str);
+		} catch (e) {
+			return false;
+		}
+		return true;
+	}
+
 	handleFormSubmit = event => {
 		event.preventDefault();
 		if (this.state.title && this.state.author) {
-			API.saveBook({
-				title: this.state.title,
-				author: this.state.author
-			})
-				.then(res => this.reloadInputs(res.data))
-				.catch(err => console.log(err));
+		 if (this.IsJsonString(this.state.author)) {
+				API.saveBook({
+					title: this.state.title,
+					author: this.state.author
+				})
+					.then(res => this.reloadInputs(res.data))
+					.catch(err => console.log(err));
+		 }else{
+			 alert("enter a valid json");
+		 }
+		
 		}
 	};
 
@@ -65,11 +81,17 @@ console.log(this.state.createdID);
                     onChange={this.handleInputChange}
                     name="title"
                     placeholder="Title (required)" />
-                <input
+                {/* <input
                     value={this.state.author}
                     onChange={this.handleInputChange}
                     name="author"
-                    placeholder="Author (required)" />
+                    placeholder="Author (required)" /> */}
+
+<textarea  value={this.state.author}
+                    onChange={this.handleInputChange}
+                    name="author"
+                    placeholder="Author (required)"  />
+            )
 
                 <button
                     disabled={!(this.state.author && this.state.title)}
