@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import API from '../../Utils/API';
-
+import { Link } from "react-router-dom";
 class Books extends Component {
 	state = {
 		books: [],
@@ -83,9 +83,8 @@ console.log(this.state.createdID);
 					  <div>
 					  <h2>Check out your mock json here:
 					  </h2>
-					   <a href={"http://localhost:5000/"+this.state.createdID+"/"} target="_blank" rel="noreferrer noopener">
-							 http:localhost:3000/{this.state.createdID}
-					   </a>
+					  <Link to={"/"+this.state.createdID}>http://localhost:3000/{this.state.createdID}</Link>
+					  
 					  </div>
 	                :
 					<div></div>
