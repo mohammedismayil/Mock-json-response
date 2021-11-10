@@ -40,7 +40,7 @@ class Books extends Component {
 		   author: '',
 		   createdID:data._id,
 		})
-
+console.log(this.state.createdID);
 
 	}
 	handleFormSubmit = event => {
@@ -56,6 +56,7 @@ class Books extends Component {
 	};
 
 	render() {
+		const createdID = this.state.createdID;
 		return (
 		<div>
 	<h1>What Books Should I Read?</h1>
@@ -76,8 +77,24 @@ class Books extends Component {
                 >
                     Submit Book
                 </button>
+               
+                {
+                  createdID.length > 0 ? 
+					  <div>
+					  <h2>Check out your mock json here:
+					  </h2>
+					   <a href={"http://localhost:5000/"+this.state.createdID+"/"} target="_blank" rel="noreferrer noopener">
+							 http:localhost:3000/{this.state.createdID}
+					   </a>
+					  </div>
+	                :
+					<div></div>
+					// href={"http:localhost:3000/"+this.state.createdID
 
-{/* <a href={http://localhost:3000/{this.state.createdID}>http://localhost:3000/{this.state.createdID}</a> */}
+				}
+
+                          
+
 				
 		</div>
 						
