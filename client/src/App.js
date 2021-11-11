@@ -1,13 +1,14 @@
 
 import './App.css';
-import Books from './Pages/Books/books';
+import MockJson from './Pages/MockJson';
+
 
 function App() {
   return (
-    <Books>
+    <MockJson>
 
       
-    </Books>
+    </MockJson>
   );
 }
 
