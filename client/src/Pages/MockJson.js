@@ -52,28 +52,30 @@ class MockJson extends Component {
   render() {
     const createdID = this.state.createdID;
     return (
-      <div className="content-center justify-center  bg-gray-600">
-        <h1 className="font-extrabold text-center">Add a new json mock</h1>
+      <div className="content-center justify-center pt-10">
+        <h1 className="font-bold text-center text-2xl">Add a new json mock</h1>
 
-        <div className="bg-red-300 m-auto w-96 content-center justify-center flex-col">
-          <div >
-            
+        <div className="m-auto w-1/2 content-center justify-center flex-col pt-10">
+          <div>
             <textarea
               value={this.state.json}
               onChange={this.handleInputChange}
               name="json"
               placeholder="JSON (required)"
-			  className="h-40 w-1/2"
+              className="h-40 w-full border border-green-800 px-2 py-2"
             />
           </div>
-
-		  <div>
-          <button disabled={!this.state.json} onClick={this.handleFormSubmit}>
-            Submit MockJson
-          </button>
-		  </div>
-          
-
+          <div className="flex content-center justify-center">
+            <div className="content-center justify-center">
+              <button
+                disabled={!this.state.json}
+                onClick={this.handleFormSubmit}
+                className="bg-blue-700 rounded-sm text-white px-5 py-2 content-center justify-center w-24 mt-10"
+              >
+                Add
+              </button>
+            </div>
+          </div>
         </div>
 
         {
