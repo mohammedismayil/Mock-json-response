@@ -2,9 +2,8 @@
   "name": "mock-json-response",
   "version": "1.0.0",
   "description": "nothing serious",
-  
   "main": "server.js",
-	"scripts": {
+  "scripts": {
     "server": "nodemon server.js"
   },
   "repository": {
@@ -19,6 +18,7 @@
   "homepage": "https://github.com/mohammedismayil/Mock-json-response#readme",
   "keywords": [],
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.12"
   },
