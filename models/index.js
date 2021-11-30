@@ -1,9 +1,9 @@
 // models/index.js
 
 const mongoose = require('mongoose');
-const URI = require('../config/index');
+// const URI = require('../config/index');
 
-mongoose.connect(process.env.MONGODB_URI || URI);
+mongoose.connect(process.env.MONGODB_URI );
 
 // When successfully connected
 mongoose.connection.on('connected', () => {
