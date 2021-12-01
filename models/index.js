@@ -3,7 +3,9 @@
 const mongoose = require('mongoose');
 // const URI = require('../config/index');
 
-mongoose.connect(process.env.MONGODB_URI );
+mongoose.connect(
+  "mongodb+srv://ismayil:ismayil10@cluster0.uossk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+);
 
 // When successfully connected
 mongoose.connection.on('connected', () => {
