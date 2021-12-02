@@ -25,6 +25,10 @@ module.exports = {
 			.catch(err => res.status(422).json(err));
 	},
 	update: function(req, res) {
+		console.log("damn these coding");
+    console.log(req.params);
+    console.log(req.body);
+	
 		MockJson.findOneAndUpdate({ _id: req.params.id }, req.body)
 			.then(MockJson => res.json(MockJson))
 			.catch(err => res.status(422).json(err));

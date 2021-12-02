@@ -14,7 +14,10 @@ ReactDOM.render(
       <Route exact path="/" element={<App />} />
       <Route path="/v0.1/:id" element={<MockJson />} />
       <Route path="/allmocks" element={<Allmocks />} />
-      <Route path="/edit/:id" element={<MockJson isFromEdit={true} />} />
+      <Route
+        path="/edit/:id"
+        element={<MockJson isFromEdit={true} id={id} />}
+      />
       {/* <Route path="/hey" element={<Books />} /> */}
     </Routes>
   </BrowserRouter>,

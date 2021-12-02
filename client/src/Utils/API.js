@@ -15,8 +15,8 @@ export default {
     return axios.get("/api/MockJsons/" + id);
   },
   // Gets the MockJson with the given id
-  updateMockJson: function (id, json) {
-    return axios.put("/api/MockJsons/" + id + json);
+  updateMockJson: function (id, data) {
+    return axios.put("http://localhost:5000/api/mockjsons/" + id, data);
   },
   // Deletes the MockJson with the given id
   deleteMockJson: function (id) {

@@ -6,15 +6,19 @@ class MockJson extends Component {
   state = {
     json: "",
     createdID: "",
-    isFromEdit: this.props.isFromEdit,
+    isFromEdit: this.props.match.params.isFromEdit,
+    id: "",
   };
 
   componentDidMount() {
-    // Runs after the first render() lifecycle
-    this.getMockDataForID();
+    // Runs after the first render() lifecycle((
+    console.log("cunt");
+    if (this.state.isFromEdit) {
+      this.getMockDataForID();
+    }
   }
   getMockDataForID = () => {
-    const id = "619dd12cf113a9cfb2918906";
+    const id = this.props.match.params.id;
     API.getMockJson(id)
       .then((res) => {
         console.log(res.data);
@@ -38,6 +42,7 @@ class MockJson extends Component {
     this.setState({
       json: "",
       createdID: data._id,
+      id: "619dd12cf113a9cfb2918906",
     });
     console.log(this.state.createdID);
   };
@@ -57,10 +62,7 @@ class MockJson extends Component {
     if (this.state.json) {
       if (this.IsJsonString(this.state.json)) {
         if (this.state.isFromEdit) {
-          API.updateMockJson({
-            json: JSON.parse(this.state.json),
-            id: "619dd12cf113a9cfb2918906",
-          })
+          API.updateMockJson(this.state.id, { json: this.state.json })
             .then((res) => this.reloadInputs(res.data))
             .catch((err) => console.log(err));
         } else {
