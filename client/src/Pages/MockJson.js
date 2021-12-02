@@ -6,8 +6,26 @@ class MockJson extends Component {
   state = {
     json: "",
     createdID: "",
+    isFromEdit: this.props.isFromEdit,
   };
 
+  componentDidMount() {
+    // Runs after the first render() lifecycle
+    this.getMockDataForID();
+  }
+  getMockDataForID = () => {
+    const id = "619dd12cf113a9cfb2918906";
+    API.getMockJson(id)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          json: JSON.stringify(res.data.json),
+          createdID: res.data._id,
+        });
+        console.log(JSON.parse(res.data.json));
+      })
+      .catch((err) => console.log(err));
+  };
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
@@ -38,11 +56,20 @@ class MockJson extends Component {
     console.log("form submitted");
     if (this.state.json) {
       if (this.IsJsonString(this.state.json)) {
-        API.saveMockJson({
-          json: this.state.json,
-        })
-          .then((res) => this.reloadInputs(res.data))
-          .catch((err) => console.log(err));
+        if (this.state.isFromEdit) {
+          API.updateMockJson({
+            json: JSON.parse(this.state.json),
+            id: "619dd12cf113a9cfb2918906",
+          })
+            .then((res) => this.reloadInputs(res.data))
+            .catch((err) => console.log(err));
+        } else {
+          API.saveMockJson({
+            json: this.state.json,
+          })
+            .then((res) => this.reloadInputs(res.data))
+            .catch((err) => console.log(err));
+        }
       } else {
         alert("enter a valid json");
       }
@@ -53,7 +80,13 @@ class MockJson extends Component {
     const createdID = this.state.createdID;
     return (
       <div className="content-center justify-center pt-10">
-        <h1 className="font-bold text-center text-2xl">Add a new json mock</h1>
+        {this.state.isFromEdit ? (
+          <h1 className="font-bold text-center text-2xl">Edit the json mock</h1>
+        ) : (
+          <h1 className="font-bold text-center text-2xl">
+            Add a new json mock
+          </h1>
+        )}
 
         <div className="m-auto w-1/2 content-center justify-center flex-col pt-10">
           <div>
@@ -67,13 +100,23 @@ class MockJson extends Component {
           </div>
           <div className="flex content-center justify-center">
             <div className="content-center justify-center">
-              <button
-                disabled={!this.state.json}
-                onClick={this.handleFormSubmit}
-                className="bg-blue-700 rounded-sm text-white px-5 py-2 content-center justify-center w-24 mt-10"
-              >
-                Add
-              </button>
+              {this.state.isFromEdit ? (
+                <button
+                  disabled={!this.state.json}
+                  onClick={this.handleFormSubmit}
+                  className="bg-blue-700 rounded-sm text-white px-5 py-2 content-center justify-center w-24 mt-10"
+                >
+                  Edit
+                </button>
+              ) : (
+                <button
+                  disabled={!this.state.json}
+                  onClick={this.handleFormSubmit}
+                  className="bg-blue-700 rounded-sm text-white px-5 py-2 content-center justify-center w-24 mt-10"
+                >
+                  Add
+                </button>
+              )}
             </div>
           </div>
         </div>

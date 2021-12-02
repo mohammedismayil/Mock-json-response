@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
   // Gets all MockJsons
   getAllMocks: function () {
-    return axios.get("http://localhost:5000/api/MockJsons", {
+    return axios.get("/api/MockJsons", {
       headers: {
         "Content-Type": "application/json  ",
         "Access-Control-Allow-Origin": "*",
@@ -13,6 +13,10 @@ export default {
   // Gets the MockJson with the given id
   getMockJson: function (id) {
     return axios.get("/api/MockJsons/" + id);
+  },
+  // Gets the MockJson with the given id
+  updateMockJson: function (id, json) {
+    return axios.put("/api/MockJsons/" + id + json);
   },
   // Deletes the MockJson with the given id
   deleteMockJson: function (id) {
