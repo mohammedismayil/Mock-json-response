@@ -65,13 +65,13 @@ export default function MockJson(props) {
       if (IsJsonString(json)) {
         if (isFromEdit) {
           API.updateMockJson(id, { json: json })
-            .then((res) => this.reloadInputs(res.data))
+            .then((res) => reloadInputs(res.data))
             .catch((err) => console.log(err));
         } else {
           API.saveMockJson({
             json: json,
           })
-            .then((res) => this.reloadInputs(res.data))
+            .then((res) => reloadInputs(res.data))
             .catch((err) => console.log(err));
         }
       } else {
