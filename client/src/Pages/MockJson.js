@@ -113,7 +113,7 @@ export default function MockJson(props) {
               <button
                 disabled={!json}
                 onClick={handleFormSubmit}
-                className="bg-blue-700 rounded-sm text-white px-5 py-2 content-center justify-center w-24 mt-10"
+                className="bg-green-700 rounded-lg text-white px-5 py-2 content-center justify-center w-24 mt-10"
               >
                 Add
               </button>
