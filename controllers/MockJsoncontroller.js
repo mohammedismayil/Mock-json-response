@@ -2,7 +2,8 @@
 const MockJson = require('../models/MockJson');
 
 // Defining all methods and business logic for routes
-
+const path = require('path');
+const fs = require('fs');
 module.exports = {
 	findAll: function(req, res) {
 		MockJson.find(req.query)
@@ -38,5 +39,18 @@ module.exports = {
 			.then(MockJson => MockJson.remove())
 			.then(allMockJsons => res.json(allMockJsons))
 			.catch(err => res.status(422).json(err));
-	}
+	},
+
+	exportJSON: async function(req,res){
+		var person = {
+			"first_name": "Tony",
+			"last_name": "Hawk",
+			"age": 31
+		 };
+	
+		res.json(person);
+		
+	},
+
+
 };

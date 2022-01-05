@@ -2,11 +2,12 @@
 
 const router = require('express').Router();
 const path = require('path');
+const fs = require('fs');
 const MockJsonRoutes = require('./MockJson');
 const MockJsonController = require('../controllers/MockJsoncontroller');
 router.use('/api/MockJsons', MockJsonRoutes);
 
-
+router.get('/export',MockJsonController.exportJSON)
 //default get method for returning json
 router.get('/:id',MockJsonController.findByIdAndReturnJson)
 
@@ -14,4 +15,5 @@ router.get('/:id',MockJsonController.findByIdAndReturnJson)
 router.use(function(req, res) {
 	res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
+
 module.exports = router;
