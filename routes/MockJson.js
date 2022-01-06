@@ -8,6 +8,8 @@ router
 	.get(MockJsonController.findAll)
 	.post(MockJsonController.create);
 
+router.route("/deleteAllMocks").get(MockJsonController.removeAllMocks);
+
 router
 	.route('/:id')
 	.get(MockJsonController.findById)

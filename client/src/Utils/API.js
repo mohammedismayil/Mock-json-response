@@ -26,4 +26,9 @@ export default {
   saveMockJson: function (MockJsonData) {
     return axios.post("/api/MockJsons", MockJsonData);
   },
+
+  // Deletes all Mocks
+  deleteAllMocks: function (id) {
+    return axios.get("/api/MockJsons/deleteAllMocks/");
+  },
 };

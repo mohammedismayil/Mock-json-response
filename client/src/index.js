@@ -7,6 +7,7 @@ import { BrowserRouter,Routes,
   Route } from "react-router-dom";
 import MockJson from './Pages/MockJson';
 import Allmocks from "./Pages/Allmocks";
+import AdminForMocks from "./Pages/AdminForMocks";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -14,6 +15,7 @@ ReactDOM.render(
       <Route exact path="/" element={<App />} />
       <Route path="/v0.1/:id" element={<MockJson />} />
       <Route path="/allmocks" element={<Allmocks />} />
+      <Route path="/admin" element={<AdminForMocks />} />
       <Route
         path="/edit/:id"
         element={<MockJson isFromEdit={true} hey={"oioioi"} />}
