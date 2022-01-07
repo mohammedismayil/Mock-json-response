@@ -68,25 +68,25 @@ module.exports = {
   exportJSON: function (req, res) {
     console.log("inside export method");
 
-    const jsonData = JSON.stringify({ uhuh: "oohjo" });
+    const jsonData = JSON.stringify({ uhuh: "oh my fucking god" });
     fs.writeFile("test.txt", jsonData, function (err) {
       if (err) {
         console.log(err);
       } else {
         MockJson.collection
           .drop()
-          .then(download(jsonData, "json.txt", "text/plain"));
+          .then(res.json({ message: "deleted successfully" }));
 
-        // res.json({ message: "deleted successfully" }));
+        //
       }
     });
-    function download(content, fileName, contentType) {
-      var a = Window.document.createElement("a");
-      var file = new Blob([content], { type: contentType });
-      a.href = URL.createObjectURL(file);
-      a.download = fileName;
-      a.click();
-    }
+    // function download(content, fileName, contentType) {
+    //   var a = Window.document.createElement("a");
+    //   var file = new Blob([content], { type: contentType });
+    //   a.href = URL.createObjectURL(file);
+    //   a.download = fileName;
+    //   a.click();
+    // }
     // res.json({ message: "deleted successfully" });
   },
 };
