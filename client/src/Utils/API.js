@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+var fs = require("fs");
 export default {
   // Gets all MockJsons
   getAllMocks: function () {
