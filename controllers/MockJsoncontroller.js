@@ -65,10 +65,18 @@ module.exports = {
 
       .catch((err) => res.status(422).json(err));
   },
-  exportJSON: function (req, res) {
-    console.log("inside export method");
 
-    const jsonData = JSON.stringify({ uhuh: "oh my fucking god" });
+  getAll: async function () {
+    const json = await MockJson.find({});
+
+    console.log(json);
+    return json;
+  },
+  exportJSON: async function (req, res) {
+    console.log("inside export method");
+    const json = await this.getAll();
+    console.log(json);
+    const jsonData = JSON.stringify(json);
     fs.writeFile("test.txt", jsonData, function (err) {
       if (err) {
         console.log(err);
