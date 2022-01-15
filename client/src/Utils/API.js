@@ -31,4 +31,8 @@ export default {
   deleteAllMocks: function (id) {
     return axios.get("/api/MockJsons/deleteAllMocks/");
   },
+  // Backup all Mocks
+  backupAllMocks: function (id) {
+    return axios.get("/api/MockJsons/backupMocks/");
+  },
 };

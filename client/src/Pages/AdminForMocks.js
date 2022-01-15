@@ -9,6 +9,13 @@ export default function AdminForMocks() {
       .then((res) => console.log("deleting all mocks"))
       .catch((err) => console.log(err));
   }
+  function backupAllMocks() {
+    console.log("pro logging-- deleting the entire collection");
+
+    API.backupAllMocks()
+      .then((res) => console.log("backedup  all mocks"))
+      .catch((err) => console.log(err));
+  }
   return (
     <div className=" flex content-center justify-center rounded-2xl w-1/4 container p-10 bg-gray-300 m-auto mt-10">
       <div className="content-center justify-center">
@@ -17,7 +24,7 @@ export default function AdminForMocks() {
           <div>
             <button
               className="bg-purple-500 pl-5 pr-5 pt-2 pb-2 mt-5 rounded-lg text-white w-full"
-              onClick={deleteAllMocks}
+              onClick={backupAllMocks}
             >
               Download Backup
             </button>

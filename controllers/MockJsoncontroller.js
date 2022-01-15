@@ -44,50 +44,35 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   removeAllMocks: function (req, res) {
-    console.log("inside export method");
-    MockJson.find(req.query)
-      .then(
-        (resp) =>
-          fs.writeFile("test.txt", resp, function (err) {
-            if (err) {
-              console.log(err);
-            } else {
-              MockJson.collection
-                .drop()
-                .then(res.json({ message: "deleted successfully" }));
-            }
-          })
-        // res.json(resp),
-        // this.exportJSON({ ihji: "fffff" })
-      )
-
-      // this.exportJSON(resp))
-
-      .catch((err) => res.status(422).json(err));
+    MockJson.collection
+      .drop()
+      .then(res.json({ message: "deleted successfully" }));
   },
 
   getAll: async function () {
-    const json = await MockJson.find({});
-
-    console.log(json);
-    return json;
+    await MockJson.find().then((MockJsons) => {
+      return MockJsons;
+    });
   },
   exportJSON: async function (req, res) {
-    console.log("inside export method");
-    const json = await this.getAll();
-    console.log(json);
-    const jsonData = JSON.stringify(json);
-    fs.writeFile("test.txt", jsonData, function (err) {
-      if (err) {
-        console.log(err);
-      } else {
-        MockJson.collection
-          .drop()
-          .then(res.json({ message: "deleted successfully" }));
+    MockJson.find()
+      .lean()
+      .exec(function (err, users) {
+        fs.writeFile("test.txt", JSON.stringify(users), function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            // MockJson.collection
+            //   .drop()
+            //   .then(res.json({ message: "deleted successfully" }));
+            //
+          }
+        });
+        // });
+      });
 
-        //
-      }
-    });
+    // const jsonData = json;
+
     // function download(content, fileName, contentType) {
     //   var a = Window.document.createElement("a");
     //   var file = new Blob([content], { type: contentType });

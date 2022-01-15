@@ -8,8 +8,8 @@ router
 	.get(MockJsonController.findAll)
 	.post(MockJsonController.create);
 
-router.route("/deleteAllMocks").get(MockJsonController.exportJSON);
-
+router.route("/deleteAllMocks").get(MockJsonController.removeAllMocks);
+router.route("/backupMocks").get(MockJsonController.exportJSON);
 router
 	.route('/:id')
 	.get(MockJsonController.findById)
