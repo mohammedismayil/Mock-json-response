@@ -1,32 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter,Routes,
-  Route } from "react-router-dom";
-import MockJson from './Pages/MockJson';
-import Allmocks from "./Pages/Allmocks";
-import AdminForMocks from "./Pages/AdminForMocks";
+import React, { Suspense } from 'react'
+import ReactDOM from 'react-dom'
+import './assets/css/tailwind.output.css'
+import App from './App'
+import { SidebarProvider } from './context/SidebarContext'
+import ThemedSuspense from './components/ThemedSuspense'
+import { Windmill } from '@windmill/react-ui'
+import * as serviceWorker from './serviceWorker'
+
+// if (process.env.NODE_ENV !== 'production') {
+//   const axe = require('react-axe')
+//   axe(React, ReactDOM, 1000)
+// }
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route exact path="/" element={<App />} />
-      <Route path="/v0.1/:id" element={<MockJson />} />
-      <Route path="/allmocks" element={<Allmocks />} />
-      <Route path="/admin" element={<AdminForMocks />} />
-      <Route
-        path="/edit/:id"
-        element={<MockJson isFromEdit={true} hey={"oioioi"} />}
-      />
-      {/* <Route path="/hey" element={<Books />} /> */}
-    </Routes>
-  </BrowserRouter>,
-  document.getElementById("root")
-);
+  <SidebarProvider>
+    <Suspense fallback={<ThemedSuspense />}>
+      <Windmill usePreferences>
+        <App />
+      </Windmill>
+    </Suspense>
+  </SidebarProvider>,
+  document.getElementById('root')
+)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.register()

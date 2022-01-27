@@ -33,6 +33,6 @@ export default {
   },
   // Backup all Mocks
   backupAllMocks: function (id) {
-    return axios.get("/api/MockJsons/backupMocks/");
+    return axios.get("http://localhost:5000/api/MockJsons/backupMocks/");
   },
 };
