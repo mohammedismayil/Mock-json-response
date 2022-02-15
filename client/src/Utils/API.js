@@ -10,6 +10,14 @@ export default {
       },
     });
   },
+  getAllMocksWeb: function () {
+    return axios.get("http://localhost:5000/api/MockJsons", {
+      headers: {
+        "Content-Type": "application/json  ",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  },
   // Gets the MockJson with the given id
   getMockJson: function (id) {
     return axios.get("/api/MockJsons/" + id);

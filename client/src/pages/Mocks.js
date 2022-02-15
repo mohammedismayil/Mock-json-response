@@ -45,15 +45,35 @@ export default function Mocks() {
     setPageTable2(p);
   }
 
+
+  function getAllMocks() {
+    API.getAllMocksWeb()
+      .then((res) => {
+        // console.log(res.data);
+        // setjson(JSON.stringify(res.data.json));
+        // setcreatedID(res.data._id);
+        console.log(JSON.parse(JSON.stringify(res.data)));
+        let data = JSON.parse(JSON.stringify(res.data));
+
+        setDataTable2(
+          data.slice(
+            (pageTable1 - 1) * resultsPerPage,
+            pageTable1 * resultsPerPage
+          )
+        );
+      })
+      .catch((err) => console.log(err));
+  }
   // on page change, load new sliced data
   // here you would make another server request for new data
   useEffect(() => {
-    setDataTable1(
-      response.slice(
-        (pageTable1 - 1) * resultsPerPage,
-        pageTable1 * resultsPerPage
-      )
-    );
+    getAllMocks();
+    // setDataTable1(
+    //   response.slice(
+    //     (pageTable1 - 1) * resultsPerPage,
+    //     pageTable1 * resultsPerPage
+    //   )
+    // );
   }, [pageTable1]);
 
   // on page change, load new sliced data
@@ -148,7 +168,7 @@ export default function Mocks() {
                       <span className="text-sm">$ {user.amount}</span>
                     </TableCell>
                     <TableCell>
-                      <Badge type={user.status}>{user.status}</Badge>
+                      <Badge type={user.status}>{user._id}</Badge>
                     </TableCell>
                     <TableCell>
                       <span className="text-sm">
